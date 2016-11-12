@@ -11,8 +11,7 @@ rescue
 end
 
 def update_user(user)
-	contact = user.attributes
-	@authorizedUsers[contact[:id]] = contact.merge(@authorizedUsers[contact[:id]])
+	@authorizedUsers[user.id].merge!(user.attributes)
 	File.write('./authorizedUsers', @authorizedUsers.to_yaml)
 end
 
@@ -29,7 +28,7 @@ def handle_user(bot, message)
 		end
 		File.write('./authorizedUsers', @authorizedUsers.to_yaml)
 	else
-		bot.api.send_message(chat_id: message.chat.id, text: "Ops, looks like #{contact.first_name} doesn't use Telegram.")
+		bot.api.send_message(chat_id: message.chat.id, text: "Ops! looks like #{contact.first_name} doesn't use Telegram.")
 	end
 end
 
@@ -65,7 +64,7 @@ Telegram::Bot::Client.run(token) do |bot|
 				when /^\/addTorrent (.*)/, /^\/add_torrent (.*)/
 					add_magnet(bot, message, $1)
 				else
-					bot.api.send_message(chat_id: message.chat.id, text: "Ops, I don't know what you mean, #{message.from.first_name}.")
+					bot.api.send_message(chat_id: message.chat.id, text: "Ops! I don't know what you mean, #{message.from.first_name}.")
 				end
 
 			end
