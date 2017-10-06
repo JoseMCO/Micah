@@ -14,14 +14,25 @@ const token = process.env.TELEGRAM_TOKEN || config.telegram.token;
 const bot = new TelegramBot(token, {polling: true});
 
 var commands = '🤖 Comandos: \n    - micah commands: Muestra este mensaje.\n'; 
+var regexs = '(a^)'; 
 for (let i in scripts) {
   bot.onText(scripts[i].regex, scripts[i].onMsg.bind({config, db}, bot));
   if (scripts[i].example) {
-    commands = commands += '    - '+scripts[i].example+'\n';
+    commands = commands + '    - '+scripts[i].example+'\n';
   }
+  regexs = regexs + '|(' + scripts[i].regex.source + ')';
 }
+regexs = new RegExp(regexs);
+
 
 bot.onText(/micah commands/, (msg) => {
   const chatId = msg.chat.id;
   bot.sendMessage(chatId, commands);
+});
+
+bot.onText(/micah(.*)/, (msg) => {
+  const chatId = msg.chat.id;
+  if(!regexs.test(msg.text)) {
+    bot.sendMessage(chatId, 'No te entiendo 🐒\n'+commands);
+  }
 });
