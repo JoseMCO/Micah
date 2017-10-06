@@ -1,0 +1,11 @@
+// Regex to be matched
+exports.regex = /micah echo (.*)/;
+
+// An example for your script
+exports.example = 'micah echo <txt>: micah te repite <txt>.'
+
+// Function to handle a match from a message
+exports.onMsg = function(bot, msg, match) {
+  const chatId = msg.chat.id;
+  bot.sendMessage(chatId, match[1]);
+};
