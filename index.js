@@ -25,14 +25,3 @@ bot.onText(/micah commands/, (msg) => {
   const chatId = msg.chat.id;
   bot.sendMessage(chatId, commands);
 });
-
-
-
-// Listen for any kind of message. There are different kinds of
-// messages.
-// bot.on('message', (msg) => {
-//   const chatId = msg.chat.id;
-//   console.log(msg)
-//   // send a message to the chat acknowledging receipt of their message
-//   // bot.sendMessage(chatId, 'Received your message');
-// });
