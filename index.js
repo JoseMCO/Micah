@@ -24,6 +24,15 @@ for (let i in scripts) {
 }
 regexs = new RegExp(regexs);
 
+bot.onText(/\/start/, (msg) => {
+  const chatId = msg.chat.id;
+  const user = msg.from;
+  console.log("New user: "+user);
+  if (msg.chat.type == 'private') {
+    db.add_user(user);
+    bot.sendMessage(chatId, "Wena, "+user.first_name+"!");
+  }
+});
 
 bot.onText(/micah commands/, (msg) => {
   const chatId = msg.chat.id;

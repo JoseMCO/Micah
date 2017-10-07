@@ -33,6 +33,20 @@ exports.get_users = () => {
   return db.users;
 };
 
+exports.add_user = (new_user) => {
+  var user = _.find(db.users, (u)=>{return u.id == new_user.id});
+  if (!user) {
+    db.users.push({...new_user, admin: false}) 
+  }
+  else {
+    _.remove(db.users, (u)=>{ return u.id == new_user.id });
+    db.users.push({...new_user, admin: user.admin}) 
+    
+  }
+  write_db();
+  return true;
+};
+
 exports.is_admin = (user_id) => {
   const user = _.find(db.users, (u)=>{return u.id == user_id});
   if (!user) {

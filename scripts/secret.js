@@ -1,4 +1,4 @@
-exports.regex = /micah secret (.*)/;
+exports.regex = /micah secret(.*)/;
 exports.example = 'micah secret <secreto>: Le cuenta tu <secreto> al grupo.'
 
 exports.onMsg = function(bot, msg, match) {
