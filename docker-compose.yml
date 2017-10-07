@@ -1,0 +1,9 @@
+version: '2'
+services:
+  micah:
+    image: micah
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ".:/var/app"

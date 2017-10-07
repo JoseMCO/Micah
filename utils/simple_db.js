@@ -10,7 +10,7 @@ function write_db() {
   });
 };
 
-exports.read_db = (file, config) => {
+exports.load_db = (file, config) => {
   file_path = file;
   jsonfile.readFile(file_path, function(err, data) {
     if (!data || data === undefined) {

@@ -8,7 +8,7 @@ const config = require('./config');
 const db = require('./utils/simple_db');
 const scripts = requireDir('./scripts/');
 
-db.read_db('./data.json', config);
+db.load_db('./data/data.json', config);
 
 const token = process.env.TELEGRAM_TOKEN || config.telegram.token;
 const bot = new TelegramBot(token, {polling: true});
@@ -16,6 +16,8 @@ const bot = new TelegramBot(token, {polling: true});
 var commands = '🤖 Comandos: \n    - micah commands: Muestra este mensaje.\n'; 
 var regexs = '(a^)'; 
 for (let i in scripts) {
+  if (!scripts[i].regex) {console.log('El script '+i+' no tiene regex!'); continue;}
+  if (!scripts[i].onMsg) {console.log('El script '+i+' no tiene onMsg!'); continue;}
   bot.onText(scripts[i].regex, scripts[i].onMsg.bind({config, db}, bot));
   if (scripts[i].example) {
     commands = commands + '    - '+scripts[i].example+'\n';
