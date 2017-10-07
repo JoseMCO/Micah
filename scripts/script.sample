@@ -1,8 +1,8 @@
 // Regex to be matched
-exports.regex = /micah echo (.*)/;
+exports.regex = /echo (.*)/;
 
 // An example for your script
-exports.example = 'micah echo <txt>: micah te repite <txt>.'
+exports.example = '/micah echo <txt>: micah te repite <txt>.'
 
 // Function to handle a match from a message
 exports.onMsg = function(bot, msg, match) {

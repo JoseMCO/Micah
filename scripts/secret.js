@@ -1,5 +1,5 @@
-exports.regex = /micah secret(.*)/;
-exports.example = 'micah secret <secreto>: Le cuenta tu <secreto> al grupo.'
+exports.regex = /secret(.*)/;
+exports.example = 'secret <secreto>: Le cuenta tu <secreto> al grupo.'
 
 exports.onMsg = function(bot, msg, match) {
   const chatId = msg.chat.id;

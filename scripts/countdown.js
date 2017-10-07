@@ -1,7 +1,7 @@
 const request = require('request');
 
-exports.regex = /micah countdown(.*)/;
-exports.example = 'micah countdown <serie>: Muestra el tiempo faltante para el próximo capítulo de <serie>.'
+exports.regex = /countdown(.*)/;
+exports.example = '/micah countdown <serie>: Muestra el tiempo faltante para el próximo capítulo de <serie>.'
 
 exports.onMsg = function(bot, msg, match) {
   const chatId = msg.chat.id;
