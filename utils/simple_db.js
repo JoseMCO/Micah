@@ -12,7 +12,7 @@ function write_db() {
 
 exports.load_db = (file, config) => {
   file_path = file;
-  jsonfile.readFile(file_path, function(err, data) {
+  jsonfile.readFile(file_path, {throws: false}, function(err, data) {
     if (!data || data === undefined) {
       data = {
         users: _.map(config.telegram.admin_ids, (u)=>{ return {id: u, admin: true}})
