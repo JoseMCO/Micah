@@ -15,7 +15,8 @@ exports.onMsg = function(bot, msg, match) {
   // Send request to the tvmaze search API
   request("http://api.tvmaze.com/search/shows?q=" + search, (err, res, body) => {
     if (err || res.statusCode !== 200) {
-      bot.sendMessage(chatId, 'Oops! Status code: '+res.statusCode);
+      bot.sendMessage(chatId, 'Oops! '+err);
+      return false;
     }
 
     const data = JSON.parse(body);
@@ -45,10 +46,10 @@ exports.onMsg = function(bot, msg, match) {
           } 
           else {
             const ep_name = data.name; 
-            const ep_date = data.airstamp; 
+            const ep_date = new Date(data.airstamp); 
             const ep_tag = +data.season+"x"+data.number; 
 
-            const distance = new Date(ep_date) - new Date(); 
+            const distance = ep_date - new Date(); 
             const _second = 1000; 
             const _minute = _second * 60; 
             const _hour = _minute * 60; 
@@ -59,7 +60,12 @@ exports.onMsg = function(bot, msg, match) {
             const minutes = Math.floor((distance % _hour) / _minute); 
             const seconds = Math.floor((distance % _minute) / _second); 
             const count = days+"d "+hours+"h "+minutes+"m y "+seconds+"s 🍿"; 
-            const result = "El siguiente episodio de "+show_name+" ("+ep_tag+": "+ep_name+") se estrena en "+count; 
+            const date_options = {
+              year: 'numeric', month: 'numeric', day: 'numeric',
+              hour: 'numeric', minute: 'numeric',
+              hour12: false
+            }
+            const result = show_name+" ("+ep_tag+": "+ep_name+") sale el "+new Intl.DateTimeFormat('es-CL', date_options).format(ep_date)+" y quedan "+count; 
 
             bot.sendMessage(chatId, result);
           }
