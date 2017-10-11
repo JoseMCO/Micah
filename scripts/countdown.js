@@ -63,7 +63,7 @@ exports.onMsg = function(bot, msg, match) {
             const date_options = {
               year: 'numeric', month: 'numeric', day: 'numeric',
               hour: 'numeric', minute: 'numeric',
-              hour12: false
+              hour12: false, timeZone: 'America/Santiago'
             }
             const result = show_name+" ("+ep_tag+": "+ep_name+") sale el "+new Intl.DateTimeFormat('es-CL', date_options).format(ep_date)+" y quedan "+count; 
 
