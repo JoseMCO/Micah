@@ -1,6 +1,6 @@
 const request = require('request');
 
-exports.regex = /countdown(.*)/;
+exports.regex = /[Cc]ountdown(.*)/;
 exports.example = '/micah countdown <serie>: Muestra el tiempo faltante para el próximo capítulo de <serie>.'
 
 exports.onMsg = function(bot, msg, match) {

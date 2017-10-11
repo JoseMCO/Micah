@@ -1,0 +1,36 @@
+const google = require('google');
+
+exports.regex = /[Gg]oogle(.*)/;
+exports.example = '/micah google <query> <count>: retorna <count> resultados en google para <query>.';
+
+exports.onMsg = function(bot, msg, match) {
+  const chatId = msg.chat.id;
+  const search = match[1].replace(/^\s+|\s+$/g, '');
+  var count = search.split(' ');
+  console.log(count);
+  count = count.length > 1 ? parseInt(search.split(' ').pop()) || 1 : 1;
+
+  if (search === 'help' || search === 'undefined' || !search) {
+    bot.sendMessage(chatId, 'Tení que darme lo que querí preguntar po! 🐣 (ej: /micah google lloverá hoy?)\n');
+    return false;
+  }
+
+  // Send request to google
+  google(search, (err, res) => {
+    if (err || !res.links || res.links.length === 0) {
+      bot.sendMessage(chatId, 'Oops! No se encontraron resultados :c');
+      return false;
+    }
+    console.log(res.$(this).find('.knavi'));
+
+    for (let l in res.links) {
+      if (res.links[l].href) {
+        bot.sendMessage(chatId, res.links[l].title+'\n'+res.links[l].description+'\n'+res.links[l].href);
+        count = count-1;
+      }
+      if (count < 1) {
+        return true;
+      }
+    }
+  });
+};

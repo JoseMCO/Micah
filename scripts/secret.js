@@ -1,4 +1,4 @@
-exports.regex = /secret(.*)/;
+exports.regex = /[Ss]ecret(.*)/;
 exports.example = 'secret <secreto>: Le cuenta tu <secreto> al grupo.'
 
 exports.onMsg = function(bot, msg, match) {
@@ -10,5 +10,6 @@ exports.onMsg = function(bot, msg, match) {
     return false;
   }
 
-  bot.sendMessage(this.config.telegram.group_id, '🙊 '+msg.text.replace(/(\/?micah secret)/,''));
+  // bot.sendMessage(this.config.telegram.group_id, '🙊 '+msg.text.replace(/(\/?micah secret)/,''));
+  bot.sendMessage(chatId, '🙊 '+msg.text.replace(/(((\/?)micah )?[Ss]ecret )/,''));
 };
