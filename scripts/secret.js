@@ -10,6 +10,6 @@ exports.onMsg = function(bot, msg, match) {
     return false;
   }
 
-  // bot.sendMessage(this.config.telegram.group_id, '🙊 '+msg.text.replace(/(\/?micah secret)/,''));
-  bot.sendMessage(chatId, '🙊 '+msg.text.replace(/(((\/?)micah )?[Ss]ecret )/,''));
+  // bot.sendMessage(chatId, '🙊 '+msg.text.replace(/(((\/?)micah )?[Ss]ecret )/,''));
+  bot.sendMessage(this.config.telegram.group_id, '🙊 '+msg.text.replace(/(((\/?)micah )?[Ss]ecret )/,''));
 };

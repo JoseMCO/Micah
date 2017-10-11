@@ -7,7 +7,6 @@ exports.onMsg = function(bot, msg, match) {
   const chatId = msg.chat.id;
   const search = match[1].replace(/^\s+|\s+$/g, '');
   var count = search.split(' ');
-  console.log(count);
   count = count.length > 1 ? parseInt(search.split(' ').pop()) || 1 : 1;
 
   if (search === 'help' || search === 'undefined' || !search) {
@@ -18,10 +17,10 @@ exports.onMsg = function(bot, msg, match) {
   // Send request to google
   google(search, (err, res) => {
     if (err || !res.links || res.links.length === 0) {
+      console.log('Oops! from google:'+res);
       bot.sendMessage(chatId, 'Oops! No se encontraron resultados :c');
       return false;
     }
-    console.log(res.$(this).find('.knavi'));
 
     for (let l in res.links) {
       if (res.links[l].href) {
