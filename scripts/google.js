@@ -5,9 +5,13 @@ exports.example = '/micah google <query> <count>: retorna <count> resultados en 
 
 exports.onMsg = function(bot, msg, match) {
   const chatId = msg.chat.id;
-  const search = match[1].replace(/^\s+|\s+$/g, '');
+  var search = match[1].replace(/^\s+|\s+$/g, '');
   var count = search.split(' ');
-  count = count.length > 1 ? parseInt(search.split(' ').pop()) || 1 : 1;
+  if (count.length > 1) {
+    search = search.split(' ');
+    count = parseInt(search.pop()) || 1;
+    search = search.join(' ');
+  }
 
   if (search === 'help' || search === 'undefined' || !search) {
     bot.sendMessage(chatId, 'Tení que darme lo que querí preguntar po! 🐣 (ej: /micah google lloverá hoy?)\n');
