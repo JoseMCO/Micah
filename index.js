@@ -13,7 +13,7 @@ db.load_db('./data/data.json', config);
 const token = process.env.TELEGRAM_TOKEN || config.telegram.token;
 const bot = new TelegramBot(token, {polling: true});
 
-var commands = '🤖 Comandos: \n    - micah commands: Muestra este mensaje.\n'; 
+var commands = '🤖 Comandos: \n    - /micah commands: Muestra este mensaje.\n'; 
 var regexs = '(a^)'; 
 for (let i in scripts) {
   if (!scripts[i].regex) {console.log('El script '+i+' no tiene regex!'); continue;}

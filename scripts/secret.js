@@ -1,5 +1,5 @@
 exports.regex = /[Ss]ecret(.*)/;
-exports.example = 'secret <secreto>: Le cuenta tu <secreto> al grupo.'
+exports.example = '/micah secret <secreto>: Le cuenta tu <secreto> al grupo.'
 
 exports.onMsg = function(bot, msg, match) {
   const chatId = msg.chat.id;
