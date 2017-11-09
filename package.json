@@ -7,7 +7,7 @@
   "author": "José Castro <n3ggro@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "google": "^2.1.0",
+    "google": "https://github.com/JoseMCO/node-google.git",
     "jsonfile": "^4.0.0",
     "lodash": "^4.17.4",
     "node-telegram-bot-api": "^0.28.0",

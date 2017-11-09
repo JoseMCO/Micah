@@ -269,6 +269,13 @@ google@^2.1.0:
     cheerio "^0.19.0"
     request "^2.54.0"
 
+"google@https://github.com/JoseMCO/node-google.git":
+  version "2.1.0"
+  resolved "https://github.com/JoseMCO/node-google.git#83a31179e11fa02b42bf2ba3b41bf2c412b7f2f6"
+  dependencies:
+    cheerio "^0.19.0"
+    request "^2.54.0"
+
 graceful-fs@^4.1.6:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"

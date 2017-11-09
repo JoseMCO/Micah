@@ -1,11 +1,12 @@
-const google = require('google');
+var google = require('google');
 
-exports.regex = /[Gg]oogle(.*)/;
-exports.example = '/micah google <query> <count>: retorna <count> resultados en google para <query>.';
+exports.regex = /([Gg]oogle|[Ii]mage|[Nn]ews|[Vv]ideo)[s]?(.*)/;
+exports.example = '/micah google|image|video|news <query> <count>: retorna <count> resultados en google para <query>.';
 
 exports.onMsg = function(bot, msg, match) {
   const chatId = msg.chat.id;
-  var search = match[1].replace(/^\s+|\s+$/g, '');
+  var type = match[1].toLowerCase();
+  var search = match[2].replace(/^\s+|\s+$/g, '');
   var count = search.split(' ');
   if (count.length > 1) {
     search = search.split(' ');
@@ -18,10 +19,11 @@ exports.onMsg = function(bot, msg, match) {
     return false;
   }
 
+  google.searchType = type;
+
   // Send request to google
   google(search, (err, res) => {
     if (err || !res.links || res.links.length === 0) {
-      console.log('Oops! from google:'+res);
       bot.sendMessage(chatId, 'Oops! No se encontraron resultados :c');
       return false;
     }
