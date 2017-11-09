@@ -13,7 +13,7 @@ exports.onMsg = function(bot, msg, match) {
 
   setTimeout(()=>{
     bot.sendMessage(chatId, "⏲ "+remainder);
-  }, parseInt(time)*1000);
+  }, parseInt(time)*1000*60);
 
   bot.sendMessage(chatId, "⏲ recorcadorio guardado!");
 };
