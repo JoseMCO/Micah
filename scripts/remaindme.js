@@ -15,5 +15,5 @@ exports.onMsg = function(bot, msg, match) {
     bot.sendMessage(chatId, "⏲ "+remainder);
   }, parseInt(time)*1000*60);
 
-  bot.sendMessage(chatId, "⏲ recorcadorio guardado!");
+  bot.sendMessage(chatId, "⏲ recordatorio guardado!");
 };
